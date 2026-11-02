@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Input Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        form {
+            max-width: 400px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type=text] {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 16px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type=submit] {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #555;
+        }
+        #informasi {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Form Input Data Penduduk</h2>
+    <form action="input.php" method="post" onsubmit="return validateForm(event)">
+        <label for="kec">Kecamatan:</label>
+        <input type="text" id="kec" name="kecamatan" required>
+
+        <label for="long">Longitude:</label>
+        <input type="text" id="long" name="longitude" required>
+
+        <label for="lat">Latitude:</label>
+        <input type="text" id="lat" name="latitude" required>
+
+        <label for="luas">Luas:</label>
+        <input type="text" id="luas" name="luas" required>
+
+        <label for="jml_ppdk">Jumlah Penduduk:</label>
+        <input type="text" id="jml_ppdk" name="jumlah_penduduk" required>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <p id="informasi"></p>
+
+    <script>
+    function validateForm(event) {
+        let luas = document.getElementById("luas").value;
+        let text = "";
+        
+        if (isNaN(luas) || luas < 1) {
+            text = "Data luas harus berupa angka dan tidak boleh bernilai negatif atau nol!";
+            event.preventDefault(); // Menghentikan pengiriman form
+            document.getElementById("informasi").innerHTML = text;
+        }
+    }
+    </script>
+
+</body>
+</html>
